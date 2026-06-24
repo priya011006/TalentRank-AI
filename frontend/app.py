@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import csv
 import sys
+import textwrap
 from pathlib import Path
 
 # Add project root to sys path
@@ -456,7 +457,7 @@ if page == "Dashboard":
     st.markdown("<p class='gradient-subtitle'>Welcome to the TalentRank AI Candidate Discovery & Ranking Engine. Under the hood, this system processes a candidate marketplace pool using hybrid semantic retrieval and behavioral signal weighting.</p>", unsafe_allow_html=True)
     
     # Metrics row in raw HTML glass cards
-    st.markdown(f"""
+    st.markdown(textwrap.dedent(f"""
     <div class="metrics-grid">
         <div class="glass-card">
             <div class="card-icon" style="color: #6366F1;">👥</div>
@@ -479,9 +480,9 @@ if page == "Dashboard":
             <div class="card-value">174</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
-    st.markdown("""
+    st.markdown(textwrap.dedent("""
     <div class="glass-panel">
         <h3 style="color: #ffffff; font-family: 'Outfit', sans-serif; margin-top: 0; font-size: 18px; margin-bottom: 12px;">🛠️ System Architecture</h3>
         <p style="color: #9ca3af; font-size: 14px; line-height: 1.6;">The engineering matching pipeline runs in a three-stage cascade:</p>
@@ -509,7 +510,7 @@ if page == "Dashboard":
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
 
 # Page 2: Dataset Overview
 elif page == "Dataset Overview":
@@ -545,7 +546,7 @@ elif page == "JD Analysis":
         st.markdown("<h3 style='color: #ffffff; font-family: Outfit, sans-serif; font-size: 16px; margin-bottom: 12px;'>Parsed JD Text Snippet</h3>", unsafe_allow_html=True)
         st.text_area("JD Text", jd_text[:2000] + "\n...", height=350)
     with col2:
-        st.markdown(f"""
+        st.markdown(textwrap.dedent(f"""
         <div class="glass-panel" style="height: 100%;">
             <h3 style="color: #ffffff; font-family: 'Outfit', sans-serif; margin-top: 0; margin-bottom: 16px; font-size: 16px;">📌 Extracted Requirements & Constraints</h3>
             
@@ -589,7 +590,7 @@ elif page == "JD Analysis":
                 </div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
 
 # Page 4: Candidate Ranking
 elif page == "Candidate Ranking":
@@ -635,7 +636,7 @@ elif page == "Candidate Details":
     
     col1, col2 = st.columns([2, 1])
     with col1:
-        st.markdown(f"""
+        st.markdown(textwrap.dedent(f"""
         <div class="glass-panel">
             <h2 style="color: #ffffff; font-family: 'Outfit', sans-serif; margin-top: 0; font-size: 22px; margin-bottom: 4px;">{candidate['profile']['anonymized_name']}</h2>
             <h4 style="color: #a5b4fc; font-family: 'Inter', sans-serif; margin-top: 0; font-weight: 500; font-size: 15px; margin-bottom: 8px;">{candidate['profile']['current_title']}</h4>
@@ -646,11 +647,11 @@ elif page == "Candidate Details":
                 <strong>Summary:</strong> {candidate['profile']['summary']}
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
         
         st.markdown("<h3 style='color: #ffffff; font-family: Outfit, sans-serif; margin-top: 24px; font-size: 18px; margin-bottom: 12px;'>💼 Career History</h3>", unsafe_allow_html=True)
         for ch in candidate["career_history"]:
-            st.markdown(f"""
+            st.markdown(textwrap.dedent(f"""
             <div class='glass-panel' style='padding: 16px !important; margin-bottom: 12px !important;'>
                 <div style='display: flex; justify-content: space-between; align-items: center;'>
                     <strong style='color: #ffffff; font-size: 15px;'>{ch['title']} at {ch['company']}</strong>
@@ -659,7 +660,7 @@ elif page == "Candidate Details":
                 <p style='color: #9ca3af; font-size: 12px; margin: 4px 0 10px 0;'>Duration: {ch['duration_months']} months | Industry: {ch['industry']}</p>
                 <div style='color: #d1d5db; font-size: 13px; line-height: 1.5;'>{ch['description']}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """), unsafe_allow_html=True)
             
     with col2:
         ee = ExplainabilityEngine()
@@ -674,7 +675,7 @@ elif page == "Candidate Details":
         else:
             concerns_html = "<div style='color: #10B981; font-size: 13px;'>No major concerns detected.</div>"
             
-        st.markdown(f"""
+        st.markdown(textwrap.dedent(f"""
         <div class="glass-panel" style="margin-bottom: 16px !important;">
             <h3 style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 15px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">🧠 AI Explainability</h3>
             
@@ -687,9 +688,9 @@ elif page == "Candidate Details":
             <strong style="color: #fca5a5; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;">Areas of Concern</strong>
             <div style="margin: 8px 0 0 0;">{concerns_html}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
         
-        st.markdown(f"""
+        st.markdown(textwrap.dedent(f"""
         <div class="glass-panel">
             <h3 style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 15px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">📶 Platform Engagement</h3>
             
@@ -710,7 +711,7 @@ elif page == "Candidate Details":
                 <span style="color: #10B981; font-weight: 600;">{int(candidate['redrob_signals']['interview_completion_rate'] * 100)}%</span>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """), unsafe_allow_html=True)
 
 # Page 6: Analytics
 elif page == "Analytics":
