@@ -723,8 +723,8 @@ elif page == "Analytics":
     ax.set_title("Semantic Match vs Technical Capability", fontsize=12, pad=15, color="#ffffff")
     ax.set_xlabel("Semantic Score", color="#a5b4fc", fontsize=10)
     ax.set_ylabel("Skills Score", color="#a5b4fc", fontsize=10)
-    ax.spines['bottom'].set_color('rgba(255, 255, 255, 0.1)')
-    ax.spines['left'].set_color('rgba(255, 255, 255, 0.1)')
+    ax.spines['bottom'].set_color((1.0, 1.0, 1.0, 0.1))
+    ax.spines['left'].set_color((1.0, 1.0, 1.0, 0.1))
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.tick_params(colors='#9ca3af')
@@ -740,8 +740,8 @@ elif page == "Analytics":
     ax2.set_title("Distribution of Years of Experience", fontsize=12, pad=15, color="#ffffff")
     ax2.set_xlabel("Years of Experience", color="#a5b4fc", fontsize=10)
     ax2.set_ylabel("Count", color="#a5b4fc", fontsize=10)
-    ax2.spines['bottom'].set_color('rgba(255, 255, 255, 0.1)')
-    ax2.spines['left'].set_color('rgba(255, 255, 255, 0.1)')
+    ax2.spines['bottom'].set_color((1.0, 1.0, 1.0, 0.1))
+    ax2.spines['left'].set_color((1.0, 1.0, 1.0, 0.1))
     ax2.spines['top'].set_visible(False)
     ax2.spines['right'].set_visible(False)
     ax2.tick_params(colors='#9ca3af')
@@ -750,7 +750,7 @@ elif page == "Analytics":
 # Page 7: Submission Export
 elif page == "Submission Export":
     st.markdown("<h1 class='gradient-header'>📤 Export Submission CSV</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='gradient-subtitle'>Generate and download the formatted CSV file matching the hackathon validator specifications.</p>", unsafe_allow_html=True)
+    st.markdown("<p class='gradient-subtitle'>Generate and download the formatted CSV file matching the system validator specifications.</p>", unsafe_allow_html=True)
     
     participant_id = st.text_input("Enter Participant Team ID:", "team_talentrank")
     
