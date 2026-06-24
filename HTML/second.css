@@ -1,0 +1,20 @@
+body{
+    background-color:cyan;
+}
+.red{
+    color:red;
+}
+#pid{
+    background-color: yellow;
+    color:green;
+}
+div p{
+    background-color:yellow;
+    color:purple;
+}
+b1,
+b2,
+b3{
+    color:maroon;
+
+}

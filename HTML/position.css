@@ -1,0 +1,21 @@
+body{
+    font-family:Arial,Helventica,sans-serif;
+}
+#box
+{
+    width:500px;
+    height:500px;
+    border:1px solid #000;
+    background:rgh(192,255.197);
+    position:relative;
+}
+#test
+{
+    width:150px;
+    height:150px;
+    border:1px solid #000;
+    background:pink;
+    position:sticky;
+    left:100px;
+    top:100px;
+}

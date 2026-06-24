@@ -1,0 +1,12 @@
+img{
+    width: 200px;
+    height:200px;
+    border:1px solid black;
+}
+img#translate{
+    width:200px;
+    height:200px;
+    border:1px solid black;
+    transform:scale(1.5,1.5)translate(400px,70px);
+    transform:skew(30deg,20deg)
+}

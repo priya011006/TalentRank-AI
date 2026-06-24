@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entry Form: Student / Employee / Faculty</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-fg: #ffffff;
+      --border: #e5e7eb;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #eef2ff);
+      color: var(--text);
+      padding: 24px;
+    }
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(2,12,27,0.06);
+      overflow: hidden;
+    }
+    header {
+      padding: 22px 26px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+      letter-spacing: 0.3px;
+    }
+    header p {
+      margin: 0;
+      opacity: 0.95;
+    }
+    form {
+      padding: 24px 26px 30px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .col-12 { grid-column: span 12; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+    @media (max-width: 720px) {
+      .col-6, .col-4, .col-3 { grid-column: span 12; }
+    }
+    label {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+    }
+    fieldset {
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0 18px;
+    }
+    legend {
+      padding: 0 8px;
+      font-weight: 600;
+      color: #374151;
+    }
+    .inline {
+      display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+    }
+    .inline label { margin: 0; }
+    .actions {
+      display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px;
+    }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-fg);
+    }
+    .btn-secondary {
+      background: #eef2ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+    }
+    .hidden { display: none; }
+    .note { font-size: 0.9rem; color: var(--muted); margin-top: -4px; }
+  </style>
+</head>
+<body>
+  <div class="container" role="region" aria-label="Entry Form Card">
+    <header>
+      <h1>Entry Form</h1>
+      <p>Submit details for Student, Employee, or Faculty</p>
+    </header>
+
+    <form id="entryForm" novalidate>
+      <!-- Role Selection -->
+      <div class="row">
+        <div class="col-4">
+          <label for="role">Role <span aria-hidden="true">*</span></label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>— Select Role —</option>
+            <option value="student">Student</option>
+            <option value="employee">Employee</option>
+            <option value="faculty">Faculty</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Basic Information -->
+      <fieldset>
+        <legend>Basic Information</legend>
+        <div class="row">
+          <div class="col-6">
+            <label for="fullName">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g., Priya Patel" required />
+          </div>
+          <div class="col-3">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" />
+          </div>
+          <div class="col-3">
+            <label>Gender</label>
+            <div class="inline" role="group" aria-label="Gender">
+              <label><input type="radio" name="gender" value="Female" /> Female</label>
+              <label><input type="radio" name="gender" value="Male" /> Male</label>
+              <label><input type="radio" name="gender" value="Other" /> Other</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <label for="email">Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required />
+          </div>
+          <div class="col-6">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91XXXXXXXXXX"
+                   pattern="^\+?[0-9\-()\s]{7,15}$" />
+            <div class="note">Format: digits, spaces, (), -, optional +</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="House No., Street, City, State, PIN"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Student Section -->
+      <fieldset id="studentFields" class="hidden" aria-hidden="true">
+        <legend>Student Details</legend>
+        <div class="row">
+          <div class="col-4">
+            <label for="rollNo">Roll Number <span aria-hidden="true">*</span></label>
+            <input type="text" id="rollNo" name="rollNo" />
+          </div>
+          <div class="col-4">
+            <label for="course">Course / Program</label>
+            <input type="text" id="course" name="course" placeholder="e.g., B.Tech CSE" />
+          </div>
+          <div class="col-4">
+            <label for="year">Year / Semester</label>
+            <input type="text" id="year" name="year" placeholder="e.g., 3rd Year / Sem 5" />
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Employee Section -->
+      <fieldset id="employeeFields" class="hidden" aria-hidden="true">
+        <legend>Employee Information</legend>
+        <div class="row">
+          <div class="col-4">
+            <label for="empId">Employee ID <span aria-hidden="true">*</span></label>
+            <input type="text" id="empId" name="empId" />
+          </div>
+          <div class="col-4">
+            <label for="empDept">Department</label>
+            <input type="text" id="empDept" name="empDept" placeholder="e.g., IT / HR / Admin" />
+          </div>
+          <div class="col-4">
+            <label for="position">Position / Title</label>
+            <input type="text" id="position" name="position" placeholder="e.g., Software Engineer" />
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Faculty Section -->
+      <fieldset id="facultyFields" class="hidden" aria-hidden="true">
+        <legend>Faculty Details</legend>
+        <div class="row">
+          <div class="col-4">
+            <label for="facId">Faculty ID <span aria-hidden="true">*</span></label>
+            <input type="text" id="facId" name="facId" />
+          </div>
+          <div class="col-4">
+            <label for="facDept">Department</label>
+            <input type="text" id="facDept" name="facDept" placeholder="e.g., Computer Science" />
+          </div>
+          <div class="col-4">
+            <label for="specialization">Specialization</label>
+            <input type="text" id="specialization" name="specialization" placeholder="e.g., Data Structures" />
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="reset" class="btn-secondary">Reset</button>
+        <button type="submit" class="btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (function () {
+      const role = document.getElementById('role');
+      const student = document.getElementById('studentFields');
+      const employee = document.getElementById('employeeFields');
+      const faculty = document.getElementById('facultyFields');
+
+      // Fields that should be required depending on role
+      const reqMap = {
+        student: ['rollNo'],
+        employee: ['empId'],
+        faculty: ['facId']
+      };
+
+      function setSectionVisibility(selected) {
+        const sections = { student, employee, faculty };
+        for (const [key, el] of Object.entries(sections)) {
+          const show = key === selected;
+          el.classList.toggle('hidden', !show);
+          el.setAttribute('aria-hidden', String(!show));
+          // Toggle required attributes
+          (reqMap[key] || []).forEach(id => {
+            const input = document.getElementById(id);
+            if (input) input.required = show;
+          });
+        }
+      }
+
+      role.addEventListener('change', () => setSectionVisibility(role.value));
+      // On reset, hide all role-specific fields and clear required
+      document.getElementById('entryForm').addEventListener('reset', () => {
+        setTimeout(() => {
+          role.value = '';
+          setSectionVisibility('');
+        }, 0);
+      });
+
+      // Demo submit handler (prevent actual submission for demo)
+      document.getElementById('entryForm').addEventListener('submit', (e) => {
+        // Allow native validation UI to run first
+        if (!e.target.checkValidity()) return;
+        e.preventDefault();
+        alert('Form submitted successfully!');
+        e.target.reset();
+      });
+
+      // Initialize
+      setSectionVisibility('');
+    })();
+  </script>
+</body>
+</html>

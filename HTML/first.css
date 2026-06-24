@@ -1,0 +1,11 @@
+body{
+    font-size: large;
+}
+h1 {
+    border: 1px solid darkblue;
+    color: green;
+    text-align: center; 
+}
+p{
+    color: brown;
+}

@@ -1,0 +1,37 @@
+body{
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1{
+    padding: 0 0 0 40px;
+}
+
+.container{
+    background:  #eee;
+    width: 300px;
+    margin: 50px auto 0;
+    padding: 0px;
+    border: 3px solid #000;
+    height: 400px;
+    display: flex;
+    align-items: baseline;
+    /* flex-wrap: wrap; */
+    /* flex-flow: column; */
+    /* justify-content: flex-end; */
+
+
+}
+
+
+.item1{background-color: orangered;}
+.item2{background-color: yellowgreen;height: 100px font -5px;}
+.item3{background-color: rgb(97, 50, 205);}
+
+.item4{background-color: rgb(205, 205, 50);}
+
+.item5{background-color: rgb(205, 50, 122);}
+.item6{background-color: rgb(97, 50, 205);}
+
+.item7{background-color: rgb(205, 205, 50);}
+
+.item8{background-color: rgb(205, 50, 122);}
