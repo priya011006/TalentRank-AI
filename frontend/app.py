@@ -359,14 +359,27 @@ inject_premium_styles()
 @st.cache_resource
 def load_initial_rankings():
     jd_text = parse_docx(config.JD_PATH)
-    # Load all candidates (100k) into list
-    candidates = list(stream_candidates(config.CANDIDATES_PATH))
+    candidates_path = Path(config.CANDIDATES_PATH)
+    
+    # Fallback to sample candidates if candidates.jsonl is not found (e.g. on Streamlit Cloud)
+    if not candidates_path.exists():
+        sample_path = candidates_path.parent / "sample_candidates.json"
+        if sample_path.exists():
+            import json
+            with open(sample_path, "r", encoding="utf-8") as f:
+                candidates = json.load(f)
+        else:
+            raise FileNotFoundError("Neither candidates.jsonl nor sample_candidates.json exists.")
+    else:
+        # Load all candidates (100k) into list
+        candidates = list(stream_candidates(config.CANDIDATES_PATH))
+        
     # Score candidates using default parameters
     default_ranked = rank_candidates(candidates, jd_text)
     return default_ranked, jd_text, len(candidates)
 
 try:
-    with st.spinner("Initializing TalentRank AI (Loading 100,000 profiles & pre-scoring)..."):
+    with st.spinner("Initializing TalentRank AI (Loading profiles & pre-scoring)..."):
         ranked_pool, jd_text, total_pool_size = load_initial_rankings()
 except Exception as e:
     st.error(f"Failed to load datasets: {e}")
