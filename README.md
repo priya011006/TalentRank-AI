@@ -1,72 +1,204 @@
-# TalentRank AI — Candidate Discovery & Ranking Engine
+# TalentRank AI
+
+## AI-Powered Candidate Discovery & Ranking Engine
+
+[![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?style=flat-square&logo=streamlit)](https://streamlit.io/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.1+-150458?style=flat-square&logo=pandas)](https://pandas.pydata.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-1.26+-013243?style=flat-square&logo=numpy)](https://numpy.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/priya011006/TalentRank-AI?style=flat-square&logo=github)](https://github.com/priya011006/TalentRank-AI)
+
+---
+
+## 🔗 Live Demo
+
+Experience the application in action:  
+**[https://talentrank-ai-sctaxnfedqshjx8hqc7ccw.streamlit.app/](https://talentrank-ai-sctaxnfedqshjx8hqc7ccw.streamlit.app/)**
+
+---
+
+## 📂 GitHub Repository
+
+**[https://github.com/priya011006/TalentRank-AI](https://github.com/priya011006/TalentRank-AI)**
+
+---
+
+## 📖 Project Overview
 
 TalentRank AI is a production-grade candidate discovery, matching, and ranking engine built to evaluate massive candidate pools against specific hiring requirements in real-time. The system implements a high-performance cascade pipeline that cleans, filters, scores, and explains candidate recommendations under strict CPU-only and local compute constraints.
 
 ---
 
-## 🚀 Core Features
+## 🎯 Problem Statement
 
-*   **Premium Glassmorphic Interface**: A dark-mode recruiter dashboard styled with soft gradients, floating accents, and interactive controls to adjust heuristic scoring weights in real-time.
-*   **Logical Contradiction Detection (Anti-Traps)**: An advanced pre-filtering step that automatically identifies and disqualifies candidate profiles containing fraudulent career histories or date contradictions (honeypots).
-*   **Cascade Search & Pruning**: Rapid location-suitability and corporate exclusion filters that prune a 100,000-candidate pool down to a highly relevant shortlist in milliseconds, enabling CPU-only real-time performance.
-*   **Local NLP Semantic Alignment**: Lightweight local vector space modeling (TF-IDF + Cosine Similarity) that compares job descriptions with candidate headlines, summaries, and career history logs.
-*   **Technical Skill Weighting**: Multi-tier scoring of required and preferred skills based on stated experience duration and proficiency levels (Expert, Intermediate, Beginner).
-*   **Behavioral Signal Modifiers**: Score optimization based on recruiter response rates, login recency, notice period thresholds, and interview attendance reliability.
-*   **Explainable AI (XAI)**: Context-aware recommendations detailing matched skills, key strengths, potential areas of concern, and a concise 180-character summary explaining each candidate's ranking.
+Recruiters face several key challenges when evaluating large candidate pools:
+- Manual review of thousands of profiles is time-consuming and inconsistent
+- Identifying fraudulent or contradictory profiles (honeypots) is error-prone
+- Balancing technical skills, experience, and behavioral signals is complex
+- Scoring systems often lack transparency and explainability
 
 ---
 
-## 🛠️ System Architecture
+## 💡 Solution
 
-The pipeline processes candidate profiles in a three-stage cascade:
-
-1.  **Stage 1: Hard Pruning Filters**: Drops profile contradictions (mismatched calendar dates, zero-duration expert skills, future dates), consulting-firm employees, and location-incompatible profiles.
-2.  **Stage 2: Hybrid Scoring Engine**: Computes semantic text overlap, skill duration scores, experience range alignment, and company tenure stability.
-3.  **Stage 3: Behavioral Signal Modifier**: Adjusts base scores dynamically using real-time engagement patterns and availability constraints.
+TalentRank AI addresses these challenges with a three-stage cascade pipeline that:
+1. Prunes invalid and low-quality profiles quickly
+2. Computes hybrid semantic and feature-based scores
+3. Adjusts final rankings using behavioral signals
+4. Generates explainable recommendations with human-readable justifications
 
 ---
 
-## 📁 Repository Structure
+## ✨ Key Features
+
+- **Hybrid Ranking**: Combines semantic similarity, skill matching, experience fit, and behavioral signals
+- **Semantic Search**: Uses TF-IDF and cosine similarity for text-based candidate matching
+- **Explainable AI (XAI)**: Generates human-readable justifications for each ranking
+- **Behavioral Signals**: Incorporates login recency, response rates, and interview attendance
+- **Candidate Validation**: JSON Schema validation for profile data integrity
+- **Honeypot Detection**: Automatically identifies fraudulent profiles with contradictions
+- **CPU-Efficient Pipeline**: Optimized for real-time performance without GPU dependencies
+- **Deterministic Ranking**: Reproducible results with configurable weights
+- **Interactive Dashboard**: Streamlit-based UI with real-time weight adjustment
+- **Submission Generation**: Exports validated CSV files matching required specifications
+
+---
+
+## 🏗️ System Architecture
 
 ```text
-TalentRank-AI/
-├── .streamlit/
-│   └── config.toml               # Streamlit theme (dark mode, violet accent)
-├── backend/
-│   ├── candidate_loader.py       # Line-by-line JSONL streaming loader
-│   ├── candidate_parser.py       # Candidate profiles cleaner & normalizer
-│   ├── jd_parser.py              # Word document parser (.docx)
-│   ├── schema_validator.py       # jsonschema profile validator
-│   └── submission_generator.py   # Final CSV output formatter & validator
-├── services/
-│   ├── explainability.py         # AI explainability text generator
-│   ├── feature_generator.py      # Feature computation (tenure, skills, experience)
-│   ├── ranking_config.py         # Heuristic weights configuration defaults
-│   └── ranking_engine.py         # Core scoring, filtering, and tie-breaking engine
-├── frontend/
-│   └── app.py                    # Recruiter dashboard UI (Streamlit)
-├── tests/
-│   ├── test_loader.py            # Loader and schema validation unit tests
-│   ├── test_jd_intelligence.py   # JD requirements extraction unit tests
-│   ├── test_features.py          # Feature extraction unit tests
-│   ├── test_ranking.py           # Core ranking rules unit tests
-│   ├── test_explainability.py    # Explainability generator unit tests
-│   ├── test_submission.py        # Output CSV formatting unit tests
-│   └── test_integration.py       # End-to-end integration and honeypot tests
-├── requirements.txt              # Project library dependencies
-├── config.py                     # Global file paths and hyperparameter constants
-└── settings.py                   # UI styling and page configurations
+Job Description
+│
+▼
+JD Parser
+│
+▼
+Candidate Loader
+│
+▼
+Schema Validation
+│
+▼
+Honeypot Detection
+│
+▼
+Hard Pruning
+│
+▼
+Feature Engineering
+│
+▼
+Semantic Matching
+│
+▼
+Hybrid Ranking Engine
+│
+▼
+Explainability
+│
+▼
+Top Ranked Candidates
+│
+▼
+Submission CSV
 ```
 
 ---
 
-## ⚙️ Setup & Installation
+## � Application Preview
+
+### Dashboard
+![Dashboard](assets/dashboard.png)  
+Overview of the talent pool with key metrics and system architecture.
+
+### Job Description Analysis
+![JD Analysis](assets/jd-analysis.png)  
+Extracts and visualizes hiring requirements from the uploaded job description.
+
+### Candidate Ranking
+![Candidate Ranking](assets/candidate-ranking.png)  
+Interactive table of top 100 ranked candidates with search and filtering.
+
+### Candidate Profile & Explainability
+![Candidate Details](assets/candidate-details.png)  
+Deep dive into individual candidate profiles with AI-powered explainability.
+
+### Analytics Dashboard
+![Analytics](assets/analytics.png)  
+Visualizes score distributions and candidate demographics for the top 100.
+
+### Submission Export
+![Submission Export](assets/submission-export.png)  
+Generates and downloads validated CSV files for submission.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category        | Technologies                                                                 |
+|-----------------|------------------------------------------------------------------------------|
+| **Language**    | Python 3.10+                                                                 |
+| **Framework**   | Streamlit                                                                    |
+| **Libraries**   | Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, python-docx, jsonschema   |
+| **Deployment**  | Streamlit Community Cloud                                                    |
+| **Testing**     | pytest                                                                       |
+| **Validation**  | JSON Schema                                                                  |
+| **NLP**         | TF-IDF Vectorizer, Cosine Similarity                                         |
+| **Visualization** | Matplotlib, Seaborn                                                          |
+| **Version Control** | Git, GitHub                                                               |
+
+---
+
+## 📁 Project Structure
+
+```text
+TalentRank-AI/
+├── assets/                     # Application screenshots
+├── backend/
+│   ├── candidate_loader.py     # Line-by-line JSONL streaming loader
+│   ├── candidate_parser.py     # Candidate profiles cleaner & normalizer
+│   ├── jd_parser.py            # Word document parser (.docx)
+│   ├── schema_validator.py     # jsonschema profile validator
+│   └── submission_generator.py # Final CSV output formatter & validator
+├── services/
+│   ├── explainability.py       # AI explainability text generator
+│   ├── feature_generator.py    # Feature computation (tenure, skills, experience)
+│   ├── ranking_config.py       # Heuristic weights configuration defaults
+│   └── ranking_engine.py       # Core scoring, filtering, and tie-breaking engine
+├── frontend/
+│   └── app.py                  # Recruiter dashboard UI (Streamlit)
+├── tests/
+│   ├── test_loader.py          # Loader and schema validation unit tests
+│   ├── test_jd_intelligence.py # JD requirements extraction unit tests
+│   ├── test_features.py        # Feature extraction unit tests
+│   ├── test_ranking.py         # Core ranking rules unit tests
+│   ├── test_explainability.py  # Explainability generator unit tests
+│   ├── test_submission.py      # Output CSV formatting unit tests
+│   └── test_integration.py     # End-to-end integration and honeypot tests
+├── data/                       # Input datasets (job description, candidates)
+├── outputs/                    # Generated submission files
+├── requirements.txt            # Project library dependencies
+├── config.py                   # Global file paths and hyperparameter constants
+└── settings.py                 # UI styling and page configurations
+```
+
+---
+
+## 🚀 Installation
 
 ### Prerequisites
-*   Python 3.10 or higher
-*   Windows / macOS / Linux
+- Python 3.10 or higher
+- Windows / macOS / Linux
 
-### 1. Create and Activate a Virtual Environment
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/priya011006/TalentRank-AI.git
+cd TalentRank-AI
+```
+
+### Step 2: Create and Activate a Virtual Environment
 ```powershell
 # Create environment
 python -m venv .venv
@@ -78,31 +210,60 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 2. Install Dependencies
-```powershell
+### Step 3: Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Place Input Datasets
-*   Place the candidate database (`candidates.jsonl`) under the `data/` folder.
-*   Place the target job description (`job_description.docx`) under the `data/` folder.
-
 ---
 
-## 🖥️ Running the Application
+## ▶️ Running the Project
 
-Launch the recruiter dashboard locally using the following command:
-```powershell
+### Launch the Application
+```bash
 streamlit run frontend/app.py
 ```
 Open your browser and navigate to `http://localhost:8501`.
 
----
-
-## 🧪 Running Verification Tests
-
-Validate all pipeline modules and anti-trap filters using `pytest`:
-```powershell
+### Running Tests
+```bash
 python -m pytest
 ```
 All unit and integration tests should pass successfully.
+
+---
+
+## 🌟 Engineering Highlights
+
+- **Modular Architecture**: Clear separation of concerns across backend, services, and frontend
+- **Streaming Data Loading**: Efficiently processes large datasets without loading everything into memory
+- **Explainability First**: Every ranking decision comes with a human-readable justification
+- **Scalability**: Designed to handle 100,000+ candidate profiles on standard hardware
+- **CPU-Only Inference**: No GPU dependencies, making deployment simple and cost-effective
+- **Maintainability**: Comprehensive test coverage and clean, well-documented code
+- **Reproducible Rankings**: Deterministic scoring with configurable weights
+
+---
+
+## 🔮 Future Improvements
+
+- **Sentence Transformers**: Replace TF-IDF with modern sentence embeddings for better semantic understanding
+- **FAISS**: Integrate Facebook AI Similarity Search for faster nearest neighbor queries
+- **Cross Encoder Reranking**: Improve ranking quality with cross-encoder models
+- **Learning-to-Rank**: Implement machine learning-based ranking models
+- **Vector Databases**: Add support for vector databases like Pinecone or Weaviate
+- **Enterprise REST APIs**: Build scalable APIs for integration with HR systems
+- **Docker**: Containerize the application for consistent deployments
+- **AWS Deployment**: Deploy to AWS for production-grade scalability
+- **Authentication**: Add user authentication and role-based access control
+- **Advanced Recruiter Dashboards**: Build tailored dashboards for different recruiter roles
+
+---
+
+## 👤 Developer
+
+**Priya Patel**  
+B.Tech Computer Science  
+Full Stack & AI Developer  
+
+[GitHub](https://github.com/priya011006)  
