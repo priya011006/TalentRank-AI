@@ -22,5 +22,5 @@ class RankingConfig:
     WEIGHT_BEHAVIOR_RELIABILITY = 0.30    # Interview completion & offer acceptance rates
 
     # Soft / Hard Filters
-    FILTER_RISK_PROFILES = True           # Exclude honeypots, consulting-only, and stuffed profiles
-    FILTER_LOCATION_INCOMPATIBLE = True   # Exclude candidates outside India or unwilling to relocate
+    FILTER_RISK_PROFILES = False          # Exclude honeypots, consulting-only, and stuffed profiles
+    FILTER_LOCATION_INCOMPATIBLE = False  # Exclude candidates outside India or unwilling to relocate
