@@ -36,7 +36,11 @@ def generate_submission(participant_id: str) -> Path:
     # 3. Score and rank candidates
     print("Scoring and ranking candidate pool (running CPU-only pipeline)...")
     ranked = rank_candidates(candidates_iter, jd_text)
-    
+    print("=" * 50)
+    print("Ranked candidates:", len(ranked))
+    print("First candidate:", ranked[0]["candidate_id"] if ranked else "None")
+    print("=" * 50)
+        
     # 4. Select top 100 fits
     top_100 = ranked[:100]
     
